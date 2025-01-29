@@ -16,8 +16,23 @@ const webappBtn = new InlineKeyboard().webApp(
     "Our web app",
     "https://vsn5nrl9-3000.euw.devtunnels.ms/"
 );
-bot.command("webapp", (ctx) => {
-    ctx.reply("WEB APP", { reply_markup: webappBtn });
+
+bot.command("webapp", async (ctx) => {
+    try {
+        await ctx.reply("WEB APP", { reply_markup: webappBtn });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+bot.command("showInGroup", async (ctx) => {
+    try {
+        await ctx.api.sendMessage(process.env.MC_ADMIN_CHAT_ID!, "Hey", {
+            reply_markup: webappBtn,
+        });
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 // Now that you specified how to handle messages, you can start your bot.
